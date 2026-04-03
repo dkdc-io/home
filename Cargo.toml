@@ -2,6 +2,7 @@
 members = [
     "crates/dkdc-home",
 ]
+exclude = ["crates/dkdc-home-py"]
 resolver = "2"
 
 [profile.release]

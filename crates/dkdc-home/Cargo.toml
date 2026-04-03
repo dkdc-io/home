@@ -6,7 +6,7 @@ rust-version = "1.85.0"
 authors = ["Cody <cody@dkdc.io>"]
 description = "Find and create the ~/.dkdc home directory"
 license = "MIT"
-repository = "https://github.com/dkdc-io/dkdc-home"
+repository = "https://github.com/dkdc-io/home"
 
 [dependencies]
 dirs = "6"
