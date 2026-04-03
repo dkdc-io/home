@@ -24,9 +24,13 @@ pub fn ensure(subdir: impl AsRef<std::path::Path>) -> std::io::Result<PathBuf> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::Mutex;
+
+    static ENV_LOCK: Mutex<()> = Mutex::new(());
 
     #[test]
     fn home_returns_dkdc_dir() {
+        let _lock = ENV_LOCK.lock().unwrap();
         unsafe { std::env::remove_var("DKDC_HOME") };
         let h = home();
         assert!(h.ends_with(".dkdc"));
@@ -34,6 +38,7 @@ mod tests {
 
     #[test]
     fn home_respects_env_override() {
+        let _lock = ENV_LOCK.lock().unwrap();
         unsafe { std::env::set_var("DKDC_HOME", "/tmp/test-dkdc-home") };
         let h = home();
         assert_eq!(h, PathBuf::from("/tmp/test-dkdc-home"));
@@ -42,6 +47,7 @@ mod tests {
 
     #[test]
     fn ensure_creates_subdir() {
+        let _lock = ENV_LOCK.lock().unwrap();
         let tmp = tempfile::tempdir().unwrap();
         unsafe { std::env::set_var("DKDC_HOME", tmp.path().to_str().unwrap()) };
         let db_dir = ensure("db").unwrap();
