@@ -40,4 +40,4 @@ jobs:
       - name: Publish crates
         env:
           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
-        run: cargo publish -p dkdc-home
+        run: cargo publish -p dkdc-home || echo "dkdc-home already published, skipping"
