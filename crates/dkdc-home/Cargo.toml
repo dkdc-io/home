@@ -1,0 +1,15 @@
+[package]
+name = "dkdc-home"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85.0"
+authors = ["Cody <cody@dkdc.io>"]
+description = "Find and create the ~/.dkdc home directory"
+license = "MIT"
+repository = "https://github.com/dkdc-io/dkdc-home"
+
+[dependencies]
+dirs = "6"
+
+[dev-dependencies]
+tempfile = "3"
