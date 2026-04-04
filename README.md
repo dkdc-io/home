@@ -5,7 +5,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/dkdc-io/home/ci.yml?branch=main&label=CI)](https://github.com/dkdc-io/home/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-8A2BE2.svg)](https://github.com/dkdc-io/home/blob/main/LICENSE)
 
-Home directory resolver for dkdc projects.
+Home library.
 
 ## Install
 
