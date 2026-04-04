@@ -1,5 +1,5 @@
 def home() -> str:
-    """Return the dkdc home directory path (~/.dkdc). Respects DKDC_HOME env var."""
+    """Return the dkdc home directory path (~/.dkdc). Respects DKDC_HOME env var. Raises RuntimeError on failure."""
     ...
 
 def ensure(subdir: str) -> str:
