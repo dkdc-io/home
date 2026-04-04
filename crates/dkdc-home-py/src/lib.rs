@@ -2,8 +2,10 @@ use pyo3::exceptions::PyRuntimeError;
 use pyo3::prelude::*;
 
 #[pyfunction]
-fn home() -> String {
-    dkdc_home::home().to_string_lossy().into_owned()
+fn home() -> PyResult<String> {
+    dkdc_home::home()
+        .map(|p| p.to_string_lossy().into_owned())
+        .map_err(|e| PyErr::new::<PyRuntimeError, _>(e.to_string()))
 }
 
 #[pyfunction]
