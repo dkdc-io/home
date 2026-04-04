@@ -37,6 +37,7 @@ mod tests {
         unsafe { std::env::remove_var("DKDC_HOME") };
         let h = home().unwrap();
         assert!(h.ends_with(".dkdc"));
+        assert!(h.is_absolute());
     }
 
     #[test]
@@ -65,6 +66,19 @@ mod tests {
         let db_dir = ensure("db").unwrap();
         assert!(db_dir.exists());
         assert!(db_dir.ends_with("db"));
+        assert!(db_dir.starts_with(home().unwrap()));
+        unsafe { std::env::remove_var("DKDC_HOME") };
+    }
+
+    #[test]
+    fn home_path_can_be_created() {
+        let _lock = ENV_LOCK.lock().unwrap();
+        let tmp = tempfile::tempdir().unwrap();
+        let custom = tmp.path().join("new-dkdc");
+        unsafe { std::env::set_var("DKDC_HOME", custom.to_str().unwrap()) };
+        let h = home().unwrap();
+        std::fs::create_dir_all(&h).unwrap();
+        assert!(h.exists());
         unsafe { std::env::remove_var("DKDC_HOME") };
     }
 
